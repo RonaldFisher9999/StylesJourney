@@ -71,11 +71,11 @@ with codecs.open(csv_file, "r", encoding="utf-8-sig") as f:
             ast.literal_eval(row[brands_index]) if row[brands_index] != "[]" else None
         )
 
-        # 16개
+        # 15개
         query = f'INSERT INTO outfit (outfit_id, img_url, origin_url, \
-        gender, age, reporter, tags, tags_filtered, brands, region, occupation, style, date, season, \
+        gender, age, reporter, tags, tags_filtered, brands, region, occupation, style, date, \
         cat_base, cat_gpt) \
-                VALUES ({"%s," * 15} %s)'
+                VALUES ({"%s," * 14} %s)'
 
         values = (
             outfit_id,
@@ -91,7 +91,7 @@ with codecs.open(csv_file, "r", encoding="utf-8-sig") as f:
             occupation,
             row[style_index],
             row[date_index],
-            row[season_index],
+            # row[season_index],
             row[cat_base_index],
             row[cat_gpt_index],
         )
